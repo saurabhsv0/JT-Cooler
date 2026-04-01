@@ -1,0 +1,89 @@
+Enter the value of 'Mass flow rate (mͦ) ' in Kg/s : 3.88*10^-5
+Enter the value of 'inner dia of Bare fin tube (di)' in mm : 0.303
+Enter the value of 'co-efficient of viscosity of hot stream at mean temperature μ (h)' in μPa-s : 147.73
+Enter the value of 'Cooler diameter (Dc)' in mm  : 11.2
+Enter the value of 'Mandrel Diameter (Dm)' in mm  : 9.06
+Enter the value of 'Thermal conductivity at mean temperature k (h)' in mW/m-K : 39.113
+Enter the value of 'Density at mean temperature ρ (h)' in Kg/m^3 : 2234.7
+Enter the value of ' H1 ' in KJ/Kg : 116.84
+Enter the value of ' H5 ' in KJ/Kg  : 95.918
+Enter the value of ' H2 '  in KJ/Kg : 52.410
+Enter the value of 'C_h' in KJ/Kg-K : 0.40009
+Enter the value of ' H (liq)'  in KJ/Kg : 1.0245
+Did you enter any wrong value? (y/n): n
+
+The Value of ∆H max is : 2.092200e+01 
+The Value of H3 is : 3.148800e+01 
+The Value of x is : 6.789717e-01 
+The Value of ∆H is : 9.489350e+01 
+The Value of Qr is : 5.511713e-04 
+The value of 'Prandtl Number at mean tempertaure Pr (h)' : 1.511142e-03
+The Value of Ah is : 7.213564e-08 
+The Value of Gh is : 5.378756e+02 
+The Value of Dh is : 1.013000e-02 
+The Value of Re_h is : 1.103204e+03 
+The flow is Laminar.
+ The value of Nu_h is : 3.660000e+00 
+The Value of h_h is : 4.724541e+02 
+The Value of f_h is : 7.981672e-03 
+The Value of ∆P/L (Pressure drop per unit length) is : 6.820649e+03 
+press Enter to continue ......
+
+Enter the value of 'Number of fins per mm '  in mm : 4.13
+Enter the value of 'Gap between two fins ' in mm  : 0.167
+Enter the value of ' Outer diameter of finned tubes ' in mm  : 1.07
+Enter the value of 'Outer diameter of finned tube without fins'  in mm : 0.46
+Enter the value of 'co-efficient of viscosity of cold stream at mean temperature μ (c)' in μPa-s : 17.888
+Enter the value of 'Thermal conductivity at mean temperature k (c)' in mW/m-K: 4.265
+Enter the value of 'Density at mean temperature ρ (c)' in Kg/m^3 : 8.2937
+Enter the value of 'L_f'  in mm : 0.305
+Enter the value of 'K_f' in W/mK : 400
+Enter the value of 'tf'  in mm : 0.075
+Enter the value of 'neta_oh' : 1
+Enter the value of 'C_c' in KJ/Kg-K : 0.16326
+Enter the value of 'T1 ' in K : 295
+Enter the value of 'T5 ' in K : 168.06
+Enter the value of 'T2 ' in K : 300
+Enter the value of 'T3 ' in K : 248.21
+Enter the value of ' C' ' : 1.03
+Did you enter any wrong value? (y/n): n
+
+The value of 'Prandtl Number at mean tempertaure Pr (c)' : 6.847350e-04
+The Value of Dh is : 1.013000e-02 
+The Value of Nf is : 1.314874e+02 
+The Value of G_c is : 2.896685e+00 
+The Value of A_w is : 2.245869e-04 
+The Value of V_fr is : 1.610225e-08 
+The Value of De_c is : 2.867888e-04 
+The Value of Re_c is : 4.644101e+01 
+The flow is Laminar.
+The valuee of Nu_c is : 3.660000e+00
+The Value of h_c is : 5.442995e+01 
+The Value of f_c is : 6.013676e-01 
+The Pressure drop per unit length ( ∆P/L ) is : 4.242893e+03 
+The Value of A_f is : 1.718829e-06 
+The Value of V_f is : 5.499804e-11 
+The Value of delta is : 3.199739e-05 
+The Value of M is : 6.521262e+01 
+The Value of neta_f is : 9.301273e-08 
+The Value of A_oc is : 2.245869e-04 
+The Value of A_oh is : 3.031806e-05 
+The Value of U is : 5.062678e-06 
+The Value of r is : 1.309982e-01 
+The Value of e is : 9.621040e-01 
+The Value of NTU is : 3.611265e+00 
+The Value of C_min is : 1.632600e-01 
+The Value of NTU_eff is : 3.719603e+00 
+The Value of L' is : 6.717471e+02 
+The Value of N is : 2.072256e+04 
+The Value of L is : 6.597471e+02 
+The Value of Area required is : 4.654015e+00 
+
+Enter the value of 'co-efficient of viscosity of hot stream at T3 μ (h)' in μPa-s : 193.85
+The Value of Re_h at T3 is : 8.407341e-04 
+The value of Discharge - Coefficient Cd is : 2.740980e+00
+Enter Cp of Hot Stream at T3 : 0.36458
+Enter Cv of Hot Stream at T3 : 0.14006
+The value of r at T3 is : 2.603027e+00
+Enter the High Pressure in bar : 150
+The diameter of the orifice in : 8.095019e-06
