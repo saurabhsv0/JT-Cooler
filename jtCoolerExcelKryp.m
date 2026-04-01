@@ -282,3 +282,28 @@ N = A_req / A_w ;
 fprintf("The Value of N is : %d \n",N) ;
 fprintf("The Value of L is : %d \n",L) ;
 fprintf("The Value of Area required is : %d \n",A_req) ;
+
+meu_h3 = input("Enter the value of 'co-efficient of viscosity of hot stream at T3 μ (h)' in μPa-s : ");
+
+Re_h3 = (De_h * G_h) / meu_h3 ;
+fprintf("The Value of Re_h at T3 is : %d \n",Re_h3) ;
+
+C_d = 0.9199 - (0.14256 * log(Re_h3)) + (0.016185 * (log(Re_h3))^2 ) ;
+fprintf("The value of Discharge - Coefficient Cd is : %d\n",C_d ) ;
+
+cp3 = input("Enter Cp of Hot Stream at T3 : ");
+cv3 = input("Enter Cv of Hot Stream at T3 : ");
+gamma = cp3 / cv3;
+fprintf("The value of r at T3 is : %d\n",gamma);
+
+R = 8.314 ;
+P1 = 10^5 * input("Enter the High Pressure in bar : ");
+
+pwr = (gamma + 1)/(gamma - 1);
+r2 = ((gamma + 1)/ 2)^ pwr ;
+r1 = gamma / (R * T3 * r2 );
+c = sqrt(r1);
+c2 = C_d * P1 * c ;
+d2 = (m0 * 4)/(pi * c2) ;
+d = sqrt(d2);
+fprintf("The diameter of the orifice in : %d\n",d);
