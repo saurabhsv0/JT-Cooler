@@ -7,7 +7,7 @@
 
 T2 = 300;
 P_high = input("Enter the value of High Pressure in bar : ");
-isoth1 = readtable("isothermal2.xlsx");
+isoth1 = readtable("krp_pressure.xlsx");
 pressure = isoth1.Pressure;
 rowIndex = find(pressure == P_high);
 fprintf("%d\n",rowIndex);
@@ -30,34 +30,23 @@ fprintf("The Value of ∆H max is : %d \n",delta_H_max) ;
 H3 = H2 - delta_H_max ;
 fprintf("The Value of H3 is : %d \n",H3) ;
 
-if P_high == 150
-    isobar = readtable("isobar150.xlsx");
-elseif P_high == 100
-    isobar = readtable("isobar100.xlsx");
-elseif P_high == 110
-    isobar = readtable("isobar110.xlsx");
-elseif P_high == 120
-    isobar = readtable("isobar120.xlsx");
-elseif P_high == 130
-    isobar = readtable("isobar130.xlsx");
-elseif P_high == 140
-    isobar = readtable("isobar140.xlsx");
-elseif P_high == 160
-    isobar = readtable("isobar160.xlsx");
-elseif P_high == 170
-    isobar = readtable("isobar170.xlsx");
-elseif P_high == 180
-    isobar = readtable("isobar180.xlsx");
-elseif P_high == 190
-    isobar = readtable("isobar190.xlsx");
-elseif P_high == 200
-    isobar = readtable("isobar200.xlsx");
+
+% extract the filtrered rows and return the corresponding row number
+data = readtable('Krypton.xlsx');
+
+filteredIdx = find(data.Pressure == P_high);
+
+if isempty(filteredIdx)
+    disp('Pressure value not found');
+else
+    enthalpyValues = data.Enthalpy(filteredIdx);
+    [~, rowNumber] = min(abs(enthalpyValues - H3));
+    rowNumber = filteredIdx(rowNumber);
+    
+    fprintf('Nearest value found at row: %d\n', rowNumber);
 end
 
-enthalpy = isobar.Enthalpy;
-[~, idx] = min(abs(enthalpy - H3));
-fprintf("row num is %d\n",idx);
-T3 = isobar{idx,"Temperature"};
+T3 = data{rowNumber,"Temperature"};
 fprintf("T3 is : %d\n",T3);
 Th_mean = (T2 + T3)/2 ;
 fprintf("Hot Stream mean temperature : %d\n", Th_mean);
@@ -73,21 +62,26 @@ fprintf("The Value of ∆H is : %d \n",delta_H) ;
 m0 = Qr / (x * delta_H * 1000);
 fprintf("The value of 'Mass flow rate (mͦ) ' in Kg/s is : %d\n",m0);
 
-temperature = isobar.Temperature;
+
+temperature = data.Temperature(filteredIdx);
 [~, idx1] = min(abs(temperature - Th_mean));
+idx1 = filteredIdx(idx1);
+
+fprintf('Nearest value found at row: %d\n', idx1);
+
 fprintf("row num is %d\n",idx1);
 
-rho_h = isobar{idx1,"Density"};
+rho_h = data{idx1,"Density"};
 fprintf("The value of 'Density at mean temperature ρ (h)' in Kg/m^3 : %d\n",rho_h);
 
-Cp_h = isobar{idx1,"Cp"};
+Cp_h = data{idx1,"Cp"};
 fprintf("The value of 'Cp of Hot Stream at mean temperature' in KJ/Kg-K : %d\n",Cp_h);
 
-meu_h = 10^-6 * (isobar{idx1,"Viscosity"}); % converted to Pa-s
+meu_h = 10^-6 * (data{idx1,"Viscosity"}); % converted to Pa-s
 % meu_h = Pa-s
 fprintf("The value of 'co-efficient of viscosity of hot stream at mean temperature μ (h)' in μPa-s : %d\n",meu_h * 10^6);% meu_h converted to uPa-s
 
-k_h = 10^-3 * (isobar{idx1,"ThermCond"}); % converted to SI Unit
+k_h = 10^-3 * (data{idx1,"ThermCond"}); % converted to SI Unit
 fprintf("The value of 'Thermal conductivity at mean  temperature k (h)' in mW/m-K : %d\n",k_h * 10^3); % converted to mW/m-k
 
 Pr_h = (meu_h * Cp_h)/k_h ;
@@ -108,8 +102,8 @@ while true
         break;
     end
     fprintf("1:di, \n 2:Dc, \n 3:Dm, \n");
-    fprintf("Enter the number of the variable you want to correct: ", 's');
-    switch input('')
+    choice = input("Enter the number of the variable you want to correct: ");
+    switch choice
         case 1, di = 10^-3 * input("Enter the value of 'inner dia of Bare fin tube (di)' in mm : ");
         case 2, Dc = 10^-3 * input("Enter the value of 'Cooler diameter (Dc)' in mm  : ");
         case 3, Dm = 10^-3 * input("Enter the value of 'Mandrel Diameter (Dm)' in mm  : ");
@@ -261,8 +255,8 @@ fprintf("The Value of A_oh is : %d \n",A_oh) ;
 U1 = ( 1 /( neta_f * h_c) ) + ( (A_oc / A_oh) / (neta_oh * h_h) ) ;
  U = 1/U1 ;
  fprintf("The Value of U is : %d \n",U) ;
-Cp_min = min(((1-x)*Cp_c)/Cp_h);
-Cp_max = max(((1-x)*Cp_c)/Cp_h);
+Cp_min = min(((1-x)*Cp_c),Cp_h);
+Cp_max = max(((1-x)*Cp_c),Cp_h);
  r = Cp_min / Cp_max;
  fprintf("The Value of r is : %d \n",r) ;
  e = (T1 - T5) / (T2 - T5) ;
@@ -283,7 +277,12 @@ fprintf("The Value of N is : %d \n",N) ;
 fprintf("The Value of L is : %d \n",L) ;
 fprintf("The Value of Area required is : %d \n",A_req) ;
 
-meu_h3 = input("Enter the value of 'co-efficient of viscosity of hot stream at T3 μ (h)' in μPa-s : ");
+temperature = data.Temperature(filteredIdx);
+[~, idx2] = min(abs(temperature - T3));
+idx2 = filteredIdx(idx2);
+
+meu_h3 = 10^-6 * (data{idx2,"Viscosity"}); % converted to Pa-s
+fprintf("The value of 'co-efficient of viscosity of hot stream at T3 μ (h)' in μPa-s : ");
 
 Re_h3 = (De_h * G_h) / meu_h3 ;
 fprintf("The Value of Re_h at T3 is : %d \n",Re_h3) ;
@@ -291,13 +290,17 @@ fprintf("The Value of Re_h at T3 is : %d \n",Re_h3) ;
 C_d = 0.9199 - (0.14256 * log(Re_h3)) + (0.016185 * (log(Re_h3))^2 ) ;
 fprintf("The value of Discharge - Coefficient Cd is : %d\n",C_d ) ;
 
-cp3 = input("Enter Cp of Hot Stream at T3 : ");
-cv3 = input("Enter Cv of Hot Stream at T3 : ");
+cp3 = data{idx2,"Cp"};
+fprintf("The value of 'Cp of Hot Stream at T3 ' in KJ/Kg-K : %d\n",cp3);
+
+cv3 = data{idx2,"Cv"};
+fprintf("The value of 'Cp of Hot Stream at T3 ' in KJ/Kg-K : %d\n",cv3);
+
 gamma = cp3 / cv3;
 fprintf("The value of r at T3 is : %d\n",gamma);
 
 R = 8.314 ;
-P1 = 10^5 * input("Enter the High Pressure in bar : ");
+P1 = 10^5 * P_high ;
 
 pwr = (gamma + 1)/(gamma - 1);
 r2 = ((gamma + 1)/ 2)^ pwr ;
@@ -306,4 +309,4 @@ c = sqrt(r1);
 c2 = C_d * P1 * c ;
 d2 = (m0 * 4)/(pi * c2) ;
 d = sqrt(d2);
-fprintf("The diameter of the orifice in : %d\n",d);
+fprintf("The diameter of the orifice is : %d\n",d);
