@@ -289,5 +289,23 @@ d2 = (m0 * 4)/(pi * c2) ;
 d = sqrt(d2);
 fprintf("The diameter of the orifice in μm : %d\n",d * 10^6);
 
+newRow = table(m0, Z_h, Z_c, L1 , d);
+
+filename = 'output.xlsx';
+
+% Check if file exists
+if isfile(filename)
+    % Read existing data
+    oldData = readtable(filename);
+    
+    % Append new row
+    updatedData = [oldData; newRow];
+else
+    % First time create file
+    updatedData = newRow;
+end
+
+% Write back to Excel
+writetable(updatedData, filename);
 
 diary off
