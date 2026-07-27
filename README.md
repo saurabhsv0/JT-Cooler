@@ -26,28 +26,7 @@ The repository serves as a reference for students, researchers, and engineers in
 - Microsoft Word
 - Microsoft Excel
 - PDF Documentation
-
----
-
-## 📁 Project Structure
-
-```
-JT-Cooler/
-│
-├── Matlab Excel/
-│   ├── Project_Report.pdf
-│   ├── Design_Documents
-│   └── Images
-│
-├── Presentation/
-│   └── Project_Presentation.pptx
-│
-├── Resources/
-│   └── Reference_Materials
-│
-└── README.md
-```
-
+- 
 ---
 
 ## 📚 About Joule-Thomson Cryocooler
