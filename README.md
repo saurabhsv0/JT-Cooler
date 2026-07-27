@@ -16,15 +16,14 @@ The repository serves as a reference for students, researchers, and engineers in
 - ❄️ Joule-Thomson cooling cycle explanation
 - ⚙️ Cryocooler component overview
 - 📊 Design calculations and analysis
-- 📝 Internship report and presentation materials
 - 📂 Organized project files
 
 ---
 
 ## 🛠️ Technologies & Tools
-
+- MatLab
+- Data Analysis
 - Microsoft Word
-- Microsoft PowerPoint
 - Microsoft Excel
 - PDF Documentation
 
@@ -35,7 +34,7 @@ The repository serves as a reference for students, researchers, and engineers in
 ```
 JT-Cooler/
 │
-├── Documentation/
+├── Matlab Excel/
 │   ├── Project_Report.pdf
 │   ├── Design_Documents
 │   └── Images
