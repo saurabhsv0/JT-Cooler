@@ -76,14 +76,14 @@ fprintf("The Value of ∆P/L is : %d \n",Z_h) ;
             % for Cold stream 
             
             
-            % Z = ∆P/L
-            % p = ρ
-            % U1 = 1/U
-            % e = ε
-            % r = gamma
-            % input = n , g_f ,d_of , d_ofb , meu_c , Pr_c , k_c , rho_c , L_f , K_f
-            % ,tf , neta_oh , C_c , C_h , T_co , T_ci , T_hi , T_ho , C1
-            % ,Dc ,h_h
+  % Z = ∆P/L
+  % p = ρ
+  % U1 = 1/U
+  % e = ε
+  % r = gamma
+  % input = n , g_f ,d_of , d_ofb , meu_c , Pr_c , k_c , rho_c , L_f , K_f
+  % ,tf , neta_oh , C_c , C_h , T_co , T_ci , T_hi , T_ho , C1
+  % ,Dc ,h_h
 
          
           
